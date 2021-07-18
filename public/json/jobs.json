@@ -1,0 +1,122 @@
+[
+    {
+        "no": 1,
+        "jobs": "Copywriter"
+    },
+    {
+        "no": 2,
+        "jobs": "Web Developer"
+    },
+    {
+        "no": 3,
+        "jobs": "UI/UX Designer"
+    },
+    {
+        "no": 4,
+        "jobs": "UX Writer"
+    },
+    {
+        "no": 5,
+        "jobs": "UX Researcher"
+    },
+    {
+        "no": 6,
+        "jobs": "Digital Marketing"
+    },
+    {
+        "no": 7,
+        "jobs": "SEO"
+    },
+    {
+        "no": 8,
+        "jobs": "Social Media Specialist"
+    },
+    {
+        "no": 9,
+        "jobs": "Data Scientist"
+    },
+    {
+        "no": 10,
+        "jobs": "Frontend Developer"
+    },
+    {
+        "no": 11,
+        "jobs": "Backend Developer"
+    },
+    {
+        "no": 12,
+        "jobs": "Android Developer"
+    },
+    {
+        "no": 13,
+        "jobs": "iOS Developer"
+    },
+    {
+        "no": 14,
+        "jobs": "Product Manager"
+    },
+    {
+        "no": 15,
+        "jobs": "Graphic Designer"
+    },
+    {
+        "no": 16,
+        "jobs": "Digital"
+    },
+    {
+        "no": 17,
+        "jobs": "Content Creator"
+    },
+    {
+        "no": 18,
+        "jobs": "Writer"
+    },
+    {
+        "no": 19,
+        "jobs": "DevOps Engineer"
+    },
+    {
+        "no": 20,
+        "jobs": "Marketing"
+    },
+    {
+        "no": 21,
+        "jobs": "Procurement"
+    },
+    {
+        "no": 22,
+        "jobs": "Legal"
+    },
+    {
+        "no": 23,
+        "jobs": "Human Resource Development"
+    },
+    {
+        "no": 24,
+        "jobs": "Secretary"
+    },
+    {
+        "no": 25,
+        "jobs": "Treasury"
+    },
+    {
+        "no": 26,
+        "jobs": "Programmer"
+    },
+    {
+        "no": 27,
+        "jobs": "Cleaning Service"
+    },
+    {
+        "no": 28,
+        "jobs": "Driver"
+    },
+    {
+        "no": 29,
+        "jobs": "Security"
+    },
+    {
+        "no": 30,
+        "jobs": "Network Engineer"
+    }
+]

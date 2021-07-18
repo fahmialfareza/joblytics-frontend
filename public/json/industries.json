@@ -1,0 +1,62 @@
+[
+    {
+        "no": 1,
+        "industry": "Biotechnology"
+    },
+    {
+        "no": 2,
+        "industry": "Artificial Intelligence"
+    },
+    {
+        "no": 3,
+        "industry": "Green Energy"
+    },
+    {
+        "no": 4,
+        "industry": "Real Estate"
+    },
+    {
+        "no": 5,
+        "industry": "Environtmental"
+    },
+    {
+        "no": 6,
+        "industry": "Social"
+    },
+    {
+        "no": 7,
+        "industry": "Governance"
+    },
+    {
+        "no": 8,
+        "industry": "Energy"
+    },
+    {
+        "no": 9,
+        "industry": "Healthcare"
+    },
+    {
+        "no": 10,
+        "industry": "Pharmacy"
+    },
+    {
+        "no": 11,
+        "industry": "Telemedicine"
+    },
+    {
+        "no": 12,
+        "industry": "Cyber Security"
+    },
+    {
+        "no": 13,
+        "industry": "Cloud Computing"
+    },
+    {
+        "no": 14,
+        "industry": "Internet of Things"
+    },
+    {
+        "no": 15,
+        "industry": "Mobile Application"
+    }
+]

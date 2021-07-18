@@ -1,0 +1,115 @@
+.file-actions {
+    display: none;
+}
+
+.daterangepicker td.off {
+    visibility: hidden;
+}
+
+.daterangepicker td.in-range {
+    background-color: rgba(38, 166, 153, 0.5);
+    color: #fff;
+}
+
+.daterangepicker td.end-date {
+    background-color: #26A69A;
+    color: #fff;
+}
+
+#profileImage {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50%;
+    background: #26A69A;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    line-height: 36px;
+    /* margin: 20px 0; */
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.wysihtml5 {
+    height: 40vh !important;
+}
+
+.wysihtml5-short {
+    height: 20vh !important;
+}
+
+.file-preview-image {
+    width: 100% !important;
+    height: auto !important;
+    max-height: auto !important;
+    max-width: auto !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.currency-text {
+    text-align: right;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.panel-container {
+    min-height: 215px;
+}
+
+.text-xs {
+    font-size: 10px !important;
+}
+
+.logo {
+    height: auto;
+    width: 150px;
+}
+
+.center {
+    text-align: center;
+}
+.left {
+    text-align: left;
+}
+.right {
+    text-align: right;
+}
+.float-right {
+    float: right;
+}
+
+#detail-status {
+    font-size: 20px;
+    float: right;
+}
+
+#detail-ktp {
+    max-width:100%;
+}
+
+/* Alert */
+
+/* Departure */
+.alert.airplane3:after { 
+    content: "\ec04" !important;
+}
+/* Arrival */
+.alert.airplane4:after {
+    content: "\ec05" !important;
+}
+.alert.enter2:after {
+    content: "\ed75" !important;
+}
+.alert.exit2:after {
+    content: "\ed76" !important;
+}

@@ -1,0 +1,150 @@
+[
+    {
+        "no": 1,
+        "skill": "Accountancy & Finance"
+    },
+    {
+        "no": 2,
+        "skill": "Architecture"
+    },
+    {
+        "no": 3,
+        "skill": "Banking"
+    },
+    {
+        "no": 4,
+        "skill": "Construction"
+    },
+    {
+        "no": 5,
+        "skill": "Contact Centres"
+    },
+    {
+        "no": 6,
+        "skill": "Defence"
+    },
+    {
+        "no": 7,
+        "skill": "Education"
+    },
+    {
+        "no": 8,
+        "skill": "Energy"
+    },
+    {
+        "no": 9,
+        "skill": "Engineering"
+    },
+    {
+        "no": 10,
+        "skill": "Executive"
+    },
+    {
+        "no": 11,
+        "skill": "Facilities Management"
+    },
+    {
+        "no": 12,
+        "skill": "Healthcare"
+    },
+    {
+        "no": 13,
+        "skill": "Human Resources"
+    },
+    {
+        "no": 14,
+        "skill": "Insurance"
+    },
+    {
+        "no": 15,
+        "skill": "Information Technology"
+    },
+    {
+        "no": 16,
+        "skill": "Legal"
+    },
+    {
+        "no": 17,
+        "skill": "Life Sciences"
+    },
+    {
+        "no": 18,
+        "skill": "Logistics"
+    },
+    {
+        "no": 19,
+        "skill": "Marketing & Digital"
+    },
+    {
+        "no": 20,
+        "skill": "Manufacturing & Operations"
+    },
+    {
+        "no": 21,
+        "skill": "Office Support"
+    },
+    {
+        "no": 22,
+        "skill": "Policy & Strategy"
+    },
+    {
+        "no": 23,
+        "skill": "Procurement"
+    },
+    {
+        "no": 24,
+        "skill": "Property"
+    },
+    {
+        "no": 25,
+        "skill": "Retail"
+    },
+    {
+        "no": 26,
+        "skill": "Resources & Mining"
+    },
+    {
+        "no": 27,
+        "skill": "Sales"
+    },
+    {
+        "no": 28,
+        "skill": "Trades & Labour"
+    },
+    {
+        "no": 29,
+        "skill": "Manufacturing & Operations"
+    },
+    {
+        "no": 30,
+        "skill": "Office Support"
+    },
+    {
+        "no": 31,
+        "skill": "Policy & Strategy"
+    },
+    {
+        "no": 32,
+        "skill": "Procurement"
+    },
+    {
+        "no": 33,
+        "skill": "Property"
+    },
+    {
+        "no": 34,
+        "skill": "Retail"
+    },
+    {
+        "no": 35,
+        "skill": "Resources & Mining"
+    },
+    {
+        "no": 36,
+        "skill": "Sales"
+    },
+    {
+        "no": 37,
+        "skill": "Trades & Labour"
+    }
+]
