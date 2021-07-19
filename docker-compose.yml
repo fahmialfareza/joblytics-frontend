@@ -1,0 +1,13 @@
+version: '2.4'
+
+services:
+  joblytics-frontend:
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    environment:
+      - PHP_POST_MAX_SIZE=250M
+      - PHP_UPLOAD_MAX_FILESIZE=250M
