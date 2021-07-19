@@ -2,26 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\IntroController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\RoomTypeController;
-use App\Http\Controllers\DurationController;
-use App\Http\Controllers\FacilityController;
-use App\Http\Controllers\PromoController;
-use App\Http\Controllers\InformationController;
-use App\Http\Controllers\UserRegisteredController;
-use App\Http\Controllers\PaymentInstructionController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\UnitController;
-use App\Http\Controllers\UnitStatusController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OverviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,15 +30,9 @@ Route::get('/skill', [DashboardController::class, 'index'])->name('skill');
 Route::get('/industry', [DashboardController::class, 'index'])->name('industry');
 Route::get('/needs', [DashboardController::class, 'index'])->name('needs');
 
-// Route::prefix('unit-status')->group(function (){
-//     Route::get('/', [UnitStatusController::class, 'index'])->name('unit_status');
-    // Route::get('/add', [UnitStatusController::class, 'add'])->name('admin.add');
-    // Route::get('/edit/{user_id}', [UnitStatusController::class, 'edit'])->name('admin.edit');
-
-    // Route::post('/create', [UnitStatusController::class, 'create'])->name('admin.create');
-    // Route::post('/update', [UnitStatusController::class, 'update'])->name('admin.update');
-    // Route::post('/delete', [UnitStatusController::class, 'delete'])->name('admin.delete');
-// });
+Route::prefix('overview')->group(function (){
+    Route::get('/', [OverviewController::class, 'index'])->name('overview');
+});
 
 // Route::prefix('admin')->group(function (){
 //     Route::get('/', [AdminController::class, 'index'])->name('admin');

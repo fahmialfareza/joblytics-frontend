@@ -38,6 +38,22 @@
                     <!-- Main -->
                     <li class="navigation-header"><span>Menu</span> <i class="icon-menu" title="Main pages"></i></li>
                     <li @if($PATH[0]=='job') class="active" @endif>
+                        <a href="/job"><i class="icon-graph"></i><span>Overview</span></a>
+                    </li>
+                    <li @if($PATH[0]=='job') class="active" @endif>
+                        <a href="/job"><i class="icon-graph"></i><span>Trends</span></a>
+                    </li>
+                    <li @if($PATH[0]=='job') class="active" @endif>
+                        <a href="/job"><i class="icon-graph"></i><span>Comparison</span></a>
+                    </li>
+                    <li @if($PATH[0]=='job') class="active" @endif>
+                        <a href="/job"><i class="icon-graph"></i><span>Job Details</span></a>
+                    </li>
+                    <li @if($PATH[0]=='job') class="active" @endif>
+                        <a href="/job"><i class="icon-graph"></i><span>Future of Jobs</span></a>
+                    </li>
+                    <hr>
+                    <li @if($PATH[0]=='job') class="active" @endif>
                         <a href="/job"><i class="icon-graph"></i><span>Jobs</span></a>
                     </li>
                     <li @if($PATH[0]=='skill') class="active" @endif>
