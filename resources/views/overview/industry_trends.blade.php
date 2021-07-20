@@ -4,30 +4,9 @@
             <h6 class="panel-title text-semibold">Industry Trends</h6>
         </div>
     </div>
-
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">From : </span>
-                                <select class="select2" id="input-year-in" onselect="yearInSelect()">
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">To : </span>
-                                <select class="select2" id="input-year-out" onselect="yearOutSelect()">
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="form-group">
                         <div class="input-group">
@@ -37,7 +16,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="input-group-addon btn btn-primary bg-primary" onclick="searchTrends()">Show Trends</a>
+                <a class="input-group-addon btn btn-primary bg-primary" onclick="searchIndustryTrends()">Show Trends</a>
             </div>
         </div>
         <div class="row">
@@ -48,8 +27,7 @@
     </div>
 </div>
 <script>
-    let $years, $industries
-    let $yearIn, $yearOut, $industriesSelected
+    let $industries, $industriesSelected
 
     $.getJSON('./json/industries.json', function (data) { 
         $industries = data 
@@ -60,27 +38,10 @@
         $('#input-industry').html(industryHtml)
         $industriesSelected = $('#input-industry').val()
     })
-
-    $.getJSON('./json/years.json', function (data) { 
-        $years = data 
-        let yearHtml = ``
-        data.forEach(y => {
-            yearHtml += `<option value="${y.no}">${y.years}</option>`
-        });
-        $('#input-year-in').html(yearHtml)
-        $('#input-year-out').html(yearHtml)
-        $yearIn = $('#input-year-in').val()
-        $yearOut = $('#input-year-out').val()
-    })
-    .then(function (res) {
-        reloadCharIndustryTrends(1, 32, [1, 2, 3, 4, 5])
-    })
     
     let industryTrendsChart = c3.generate({
         data: { x: 'x', columns: [ [], [] ], },
     });
-
-
 
     function reloadCharIndustryTrends(year_in, year_out, industry_ids) {
 
@@ -99,7 +60,7 @@
                     }
                 });
             });
-            initChart(industryTrends, industry_ids)
+            initChartIndustryTrends(industryTrends, industry_ids)
         },
         error: function (err) {
             console.error(err);
@@ -108,7 +69,7 @@
         });
     }
 
-    function initChart(industry_trends, industry_ids) {
+    function initChartIndustryTrends(industry_trends, industry_ids) {
         let years = []
         $years.forEach(year => { years.push(year.years) });
 
@@ -175,19 +136,11 @@
         });
     }
 
-    function searchTrends() {
+    function searchIndustryTrends() {
         yearInSelect()
         yearOutSelect()
         industrySelect()
-
         reloadCharIndustryTrends($yearIn, $yearOut, $industriesSelected)
-    }
-
-    function yearInSelect() {
-        $yearIn = $('#input-year-in').val()
-    }
-    function yearOutSelect() {
-        $yearOut = $('#input-year-out').val()
     }
     function industrySelect() {
         console.log('Industry Selected', $('#input-industry').val())

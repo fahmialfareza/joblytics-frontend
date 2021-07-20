@@ -4,30 +4,9 @@
             <h6 class="panel-title text-semibold">Job Trends</h6>
         </div>
     </div>
-
-    <div class="panel-body" style="height: 80vh">
+    <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">From : </span>
-                                <select class="select2" id="input-year-in" onselect="yearInSelect()">
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">To : </span>
-                                <select class="select2" id="input-year-out" onselect="yearOutSelect()">
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="form-group">
                         <div class="input-group">
@@ -37,7 +16,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="input-group-addon btn btn-primary bg-primary" onclick="searchTrends()">Show Trends</a>
+                <a class="input-group-addon btn btn-primary bg-primary" onclick="searchJobTrends()">Show Trends</a>
             </div>
         </div>
         <div class="row">
@@ -48,8 +27,7 @@
     </div>
 </div>
 <script>
-    let $years, $jobs
-    let $yearIn, $yearOut, $jobsSelected
+    let $jobs, $jobsSelected
 
     $.getJSON('./json/jobs.json', function (data) { 
         $jobs = data 
@@ -60,22 +38,6 @@
         $('#input-job').html(jobHtml)
         $jobsSelected = $('#input-job').val()
     })
-
-    $.getJSON('./json/years.json', function (data) { 
-        $years = data 
-        let yearHtml = ``
-        data.forEach(y => {
-            yearHtml += `<option value="${y.no}">${y.years}</option>`
-        });
-        $('#input-year-in').html(yearHtml)
-        $('#input-year-out').html(yearHtml)
-        $yearIn = $('#input-year-in').val()
-        $yearOut = $('#input-year-out').val()
-    })
-
-    setTimeout(() => {
-        // reloadCharJobTrends($yearIn, $yearOut, $jobsSelected)
-    }, 5000);
 
     let jobTrendsChart = c3.generate({
         data: { x: 'x', columns: [ [], [] ], },
@@ -98,7 +60,7 @@
                     }
                 });
             });
-            initChart(jobTrends, job_ids)
+            initJobTrendsChart(jobTrends, job_ids)
         },
         error: function (err) {
             console.error(err);
@@ -107,7 +69,7 @@
         });
     }
 
-    function initChart(job_trends, job_ids) {
+    function initJobTrendsChart(job_trends, job_ids) {
         let years = []
         $years.forEach(year => { years.push(year.years) });
 
@@ -175,20 +137,13 @@
         });
     }
 
-    function searchTrends() {
+    function searchJobTrends() {
         yearInSelect()
         yearOutSelect()
         jobSelect()
-
         reloadCharJobTrends($yearIn, $yearOut, $jobsSelected)
     }
 
-    function yearInSelect() {
-        $yearIn = $('#input-year-in').val()
-    }
-    function yearOutSelect() {
-        $yearOut = $('#input-year-out').val()
-    }
     function jobSelect() {
         console.log('Job Selected', $('#input-job').val())
         $jobsSelected = $('#input-job').val()

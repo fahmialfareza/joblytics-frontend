@@ -4,39 +4,18 @@
             <h6 class="panel-title text-semibold">Industry Needs</h6>
         </div>
     </div>
-
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">From : </span>
-                                <select class="select2" id="input-year-in" onselect="yearInSelect()">
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">To : </span>
-                                <select class="select2" id="input-year-out" onselect="yearOutSelect()">
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">Industry : </span>
-                            <select class="select2" id="input-industry" oninput="industrySelect()"></select>
+                            <select class="select2" id="input-industry" oninput="industryNeedsSelect()"></select>
                         </div>
                     </div>
                 </div>
-                <a class="input-group-addon btn btn-primary bg-primary" onclick="searchNeeds()">Show Needs</a>
+                <a class="input-group-addon btn btn-primary bg-primary" onclick="searchIndustryNeeds()">Show Needs</a>
             </div>
         </div>
         <div class="row">
@@ -47,29 +26,16 @@
     </div>
 </div>
 <script>
-    let $years, $industries
-    let $yearIn, $yearOut, $industrySelected
+    let $industryNeedsIndustries, $industryNeedsSelected
 
     $.getJSON('./json/industries.json', function (data) { 
-        $industries = data 
+        $industryNeedsIndustries = data 
         let industryHtml = ``
         data.forEach(j => {
             industryHtml += `<option value="${j.no}">${j.industry}</option>`
         });
         $('#input-industry').html(industryHtml)
-        $industrySelected = $('#input-industry').val()
-    })
-
-    $.getJSON('./json/years.json', function (data) { 
-        $years = data 
-        let yearHtml = ``
-        data.forEach(y => {
-            yearHtml += `<option value="${y.no}">${y.years}</option>`
-        });
-        $('#input-year-in').html(yearHtml)
-        $('#input-year-out').html(yearHtml)
-        $yearIn = $('#input-year-in').val()
-        $yearOut = $('#input-year-out').val()
+        $industryNeedsSelected = $('#input-industry').val()
     })
     
     let industryNeedsChart = c3.generate({
@@ -92,7 +58,7 @@
                 }
             });
             console.log('Needs', industryNeeds);
-            initChart(industryNeeds)
+            initChartIndustryNeeds(industryNeeds)
         },
         error: function (err) {
             console.error(err);
@@ -101,7 +67,7 @@
         });
     }
 
-    function initChart(industry_needs) {
+    function initChartIndustryNeeds(industry_needs) {
         let years = []
         $years.forEach(year => { years.push(year.years) });
 
@@ -119,7 +85,7 @@
             needs[0].push(need.supply)
             needs[1].push(need.demand)
         });
-        let industryName = $industries[industry_needs[0].industry_id-1].industry
+        let industryName = $industryNeedsIndustries[industry_needs[0].industry_id-1].industry
 
         needs.push(xAxis)
 
@@ -161,23 +127,16 @@
         });
     }
 
-    function searchNeeds() {
+    function searchIndustryNeeds() {
         yearInSelect()
         yearOutSelect()
-        industrySelect()
-
-        reloadCharIndustryNeeds($yearIn, $yearOut, $industrySelected)
+        industryNeedsSelect()
+        reloadCharIndustryNeeds($yearIn, $yearOut, $industryNeedsSelected)
     }
 
-    function yearInSelect() {
-        $yearIn = $('#input-year-in').val()
-    }
-    function yearOutSelect() {
-        $yearOut = $('#input-year-out').val()
-    }
-    function industrySelect() {
+    function industryNeedsSelect() {
         console.log('Industry Selected', $('#input-industry').val())
-        $industrySelected = $('#input-industry').val()
+        $industryNeedsSelected = $('#input-industry').val()
     }
 
 </script>
