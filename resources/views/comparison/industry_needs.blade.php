@@ -1,26 +1,28 @@
 <div class="panel panel-flat">
     <div class="panel-heading">
         <div class="col-md-6">
-            <h6 class="panel-title text-semibold">Industry Needs</h6>
+            <h6 class="panel-title text-semibold">Graduates vs Industry Needs</h6>
         </div>
     </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">Industry : </span>
-                            <select class="select2" id="input-industry" oninput="industryNeedsSelect()"></select>
-                        </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Industry : </span>
+                        <select class="select2" id="input-industry-needs" oninput="industryNeedsSelect()"></select>
                     </div>
                 </div>
-                <a class="input-group-addon btn btn-primary bg-primary" onclick="searchIndustryNeeds()">Show Needs</a>
+                <div class="form-group float-right">
+                    <div class="col-md-1">
+                        <a class="input-group-addon btn btn-primary bg-primary" onclick="searchIndustryNeeds()">Show Needs</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="chart-container" style="margin-bottom:30px">
-                <div class="chart" id="revenue-chart"></div>
+                <div class="chart" id="industry-needs-chart"></div>
             </div>
         </div>
     </div>
@@ -34,37 +36,34 @@
         data.forEach(j => {
             industryHtml += `<option value="${j.no}">${j.industry}</option>`
         });
-        $('#input-industry').html(industryHtml)
-        $industryNeedsSelected = $('#input-industry').val()
+        $('#input-industry-needs').html(industryHtml)
+        $('#input-industry-needs').val(Math.floor(Math.random() * data.length))
+        $industryNeedsSelected = $('#input-industry-needs').val()
     })
     
     let industryNeedsChart = c3.generate({
         data: { x: 'x', columns: [ [], [] ], },
     });
 
-    function reloadCharIndustryNeeds(year_in, year_out, industry_id) {
-
-        let industryNeeds = [];
-
-        // Re-initialize Datatable
+    function reloadChartIndustryNeeds(year_in, year_out, industry_id) {
         $.ajax({
-        url: './json/industry_needs.json',
-        method: 'get',
-        dataType: 'json',
-        success: function (res) {
-            res.forEach(r => {
-                if (r.year_id >= year_in && r.year_id <= year_out && r.industry_id == industry_id) {
-                    industryNeeds.push(r)
-                }
-            });
-            console.log('Needs', industryNeeds);
-            initChartIndustryNeeds(industryNeeds)
-        },
-        error: function (err) {
-            console.error(err);
-            $('#showing-message').html("Error occured");
-        }
-        });
+            url: 'api/comparison/graduate',
+            method: 'get',
+            data: {
+                'year_start': year_in, 
+                'year_end': year_out, 
+                'industry_ids': [industry_id], 
+            },
+            success: function (res) {
+                console.log(res);
+                let industryNeeds = res.result.data
+                initChartIndustryNeeds(industryNeeds, industry_id)
+            },
+            error: function(err) {
+                console.error(err);
+                $('#showing-message').html("Error occured");
+            }
+        })
     }
 
     function initChartIndustryNeeds(industry_needs) {
@@ -93,7 +92,7 @@
 
         // Room Sold & Revenue Chart
         industryNeedsChart = c3.generate({
-            bindto: '#revenue-chart',
+            bindto: '#industry-needs-chart',
             point: { r: 4 },
             size: { height: 400 },
             data: {
@@ -131,12 +130,12 @@
         yearInSelect()
         yearOutSelect()
         industryNeedsSelect()
-        reloadCharIndustryNeeds($yearIn, $yearOut, $industryNeedsSelected)
+        reloadChartIndustryNeeds($yearIn, $yearOut, $industryNeedsSelected)
     }
 
     function industryNeedsSelect() {
-        console.log('Industry Selected', $('#input-industry').val())
-        $industryNeedsSelected = $('#input-industry').val()
+        console.log('Industry Selected', $('#input-industry-needs').val())
+        $industryNeedsSelected = $('#input-industry-needs').val()
     }
 
 </script>

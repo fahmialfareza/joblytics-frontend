@@ -7,21 +7,23 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">Job : </span>
-                            <select class="select2" multiple="multiple" 
-                                id="input-job" oninput="jobSelect()"></select>
-                        </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Job : </span>
+                        <select class="select2" multiple="multiple" 
+                            id="input-job" oninput="jobSelect()"></select>
                     </div>
                 </div>
-                <a class="input-group-addon btn btn-primary bg-primary" onclick="searchJobTrends()">Show Trends</a>
+                <div class="form-group float-right">
+                    <div class="col-md-1">
+                        <a class="input-group-addon btn btn-primary bg-primary" onclick="searchJobTrends()">Show Trends</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="chart-container" style="margin-bottom:30px">
-                <div class="chart" id="revenue-chart"></div>
+                <div class="chart" id="job-trends-chart"></div>
             </div>
         </div>
     </div>
@@ -31,42 +33,48 @@
 
     $.getJSON('./json/jobs.json', function (data) { 
         $jobs = data 
+        let randomIndexs = []
         let jobHtml = ``
+
         data.forEach(j => {
             jobHtml += `<option value="${j.no}">${j.jobs}</option>`
         });
+
         $('#input-job').html(jobHtml)
-        $jobsSelected = $('#input-job').val()
+
+        // automatically select 3 random jobs
+        while (randomIndexs.length < 3) {
+            let randomInt = Math.floor(Math.random() * data.length)
+            if (!randomIndexs.includes(randomInt)) {
+                randomIndexs.push(randomInt)
+            }
+        }
+        $('#input-job').val(randomIndexs)
+        $jobsSelected = randomIndexs
     })
 
     let jobTrendsChart = c3.generate({
         data: { x: 'x', columns: [ [], [] ], },
     });
 
-    function reloadCharJobTrends(year_in, year_out, job_ids) {
-
-        let jobTrends = [];
-
-        // Re-initialize Datatable
+    function reloadChartJobTrends(year_in, year_out, job_ids) {
         $.ajax({
-        url: './json/job_trends.json',
-        method: 'get',
-        dataType: 'json',
-        success: function (res) {
-            res.forEach(r => {
-                job_ids.forEach(job_id => {
-                    if (r.year_id >= year_in && r.year_id <= year_out && r.job_id == job_id) {
-                        jobTrends.push(r)
-                    }
-                });
-            });
-            initJobTrendsChart(jobTrends, job_ids)
-        },
-        error: function (err) {
-            console.error(err);
-            $('#showing-message').html("Error occured");
-        }
-        });
+            url: 'api/trend/job',
+            method: 'get',
+            data: {
+                'year_start': year_in, 
+                'year_end': year_out, 
+                'job_ids': job_ids, 
+            },
+            success: function (res) {
+                let jobTrends = res.result.data
+                initJobTrendsChart(jobTrends, job_ids)
+            },
+            error: function(err) {
+                console.error(err);
+                $('#showing-message').html("Error occured");
+            }
+        })
     }
 
     function initJobTrendsChart(job_trends, job_ids) {
@@ -97,14 +105,12 @@
             trend[0] = jobNames[i]
         });
         trends.push(xAxis)
-        // console.log('xAxis', xAxis);
-        // console.log('trends Final', trends);
 
         jobTrendsChart.destroy();
 
         // Room Sold & Revenue Chart
         jobTrendsChart = c3.generate({
-            bindto: '#revenue-chart',
+            bindto: '#job-trends-chart',
             point: { r: 4 },
             size: { height: 400 },
             data: {
@@ -141,7 +147,7 @@
         yearInSelect()
         yearOutSelect()
         jobSelect()
-        reloadCharJobTrends($yearIn, $yearOut, $jobsSelected)
+        reloadChartJobTrends($yearIn, $yearOut, $jobsSelected)
     }
 
     function jobSelect() {

@@ -2,7 +2,8 @@
 <div class="navbar navbar-inverse">
     <div class="navbar-header">
         <a class="navbar-brand" href="/dashboard">
-            <img src="assets/images/passgo_logo_white.png" alt="Logo Passgo">
+            {{-- <img src="assets/images/passgo_logo_white.png" alt="Logo Passgo"> --}}
+            Joblytics
         </a>
 
         <ul class="nav navbar-nav visible-xs-block">

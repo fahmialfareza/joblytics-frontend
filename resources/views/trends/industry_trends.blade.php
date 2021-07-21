@@ -7,21 +7,24 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">Industry : </span>
-                            <select class="select2" multiple="multiple" 
-                                id="input-industry" oninput="industrySelect()"></select>
-                        </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Industry : </span>
+                        <select class="select2" multiple="multiple" id="input-industry-trends" oninput="industrySelect()"></select>
                     </div>
                 </div>
-                <a class="input-group-addon btn btn-primary bg-primary" onclick="searchIndustryTrends()">Show Trends</a>
+                <div class="form-group float-right">
+                    <div class="col-md-1">
+                        <a class="input-group-addon btn btn-primary bg-primary" onclick="searchIndustryTrends()">Show Trends</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
             </div>
         </div>
         <div class="row">
             <div class="chart-container" style="margin-bottom:30px">
-                <div class="chart" id="revenue-chart"></div>
+                <div class="chart" id="industry-trends-chart"></div>
             </div>
         </div>
     </div>
@@ -31,42 +34,49 @@
 
     $.getJSON('./json/industries.json', function (data) { 
         $industries = data 
+        let randomIndexs = []
         let industryHtml = ``
+
         data.forEach(j => {
             industryHtml += `<option value="${j.no}">${j.industry}</option>`
         });
-        $('#input-industry').html(industryHtml)
-        $industriesSelected = $('#input-industry').val()
+        
+        $('#input-industry-trends').html(industryHtml)
+        
+        // automatically select 3 random jobs
+        while (randomIndexs.length < 3) {
+            let randomInt = Math.floor(Math.random() * data.length)
+            if (!randomIndexs.includes(randomInt)) {
+                randomIndexs.push(randomInt)
+            }
+        }
+        $('#input-industry-trends').val(randomIndexs)
+        $jobsSelected = randomIndexs
     })
     
     let industryTrendsChart = c3.generate({
         data: { x: 'x', columns: [ [], [] ], },
     });
 
-    function reloadCharIndustryTrends(year_in, year_out, industry_ids) {
+    function reloadChartIndustryTrends(year_in, year_out, industry_ids) {
 
-        let industryTrends = [];
-
-        // Re-initialize Datatable
         $.ajax({
-        url: './json/industry_trends.json',
-        method: 'get',
-        dataType: 'json',
-        success: function (res) {
-            res.forEach(r => {
-                industry_ids.forEach(industry_id => {
-                    if (r.year_id >= year_in && r.year_id <= year_out && r.industry_id == industry_id) {
-                        industryTrends.push(r)
-                    }
-                });
-            });
-            initChartIndustryTrends(industryTrends, industry_ids)
-        },
-        error: function (err) {
-            console.error(err);
-            $('#showing-message').html("Error occured");
-        }
-        });
+            url: 'api/trend/industry',
+            method: 'get',
+            data: {
+                'year_start': year_in, 
+                'year_end': year_out, 
+                'industry_ids': industry_ids, 
+            },
+            success: function (res) {
+                let industryTrends = res.result.data
+                initChartIndustryTrends(industryTrends, industry_ids)
+            },
+            error: function(err) {
+                console.error(err);
+                $('#showing-message').html("Error occured");
+            }
+        })
     }
 
     function initChartIndustryTrends(industry_trends, industry_ids) {
@@ -102,13 +112,12 @@
 
         // Room Sold & Revenue Chart
         industryTrendsChart = c3.generate({
-            bindto: '#revenue-chart',
+            bindto: '#industry-trends-chart',
             point: { r: 4 },
             size: { height: 400 },
             data: {
                 x: 'x',
-                columns: trends,
-                type: 'bar'
+                columns: trends
             },
             legend: {
                 show: true,
@@ -140,11 +149,11 @@
         yearInSelect()
         yearOutSelect()
         industrySelect()
-        reloadCharIndustryTrends($yearIn, $yearOut, $industriesSelected)
+        reloadChartIndustryTrends($yearIn, $yearOut, $industriesSelected)
     }
     function industrySelect() {
-        console.log('Industry Selected', $('#input-industry').val())
-        $industriesSelected = $('#input-industry').val()
+        console.log('Industry Selected', $('#input-industry-trends').val())
+        $industriesSelected = $('#input-industry-trends').val()
     }
 
 </script>

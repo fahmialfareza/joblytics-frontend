@@ -2,7 +2,7 @@
     $PATH = explode('/', Request::path());
 @endphp
 
-<div class="sidebar sidebar-main bg-primary">
+<div class="sidebar sidebar-main">
     <div class="sidebar-content">
 
         <!-- User menu -->
@@ -43,27 +43,14 @@
                     <li @if($PATH[0]=='trends') class="active" @endif>
                         <a href="/trends"><i class="icon-stats-growth"></i><span>Trends</span></a>
                     </li>
-                    <li @if($PATH[0]=='comparision') class="active" @endif>
-                        <a href="/comparision"><i class="icon-stats-bars3"></i><span>Comparison</span></a>
+                    <li @if($PATH[0]=='comparison') class="active" @endif>
+                        <a href="/comparison"><i class="icon-stats-bars3"></i><span>Comparison</span></a>
                     </li>
                     <li @if($PATH[0]=='job-details') class="active" @endif>
                         <a href="/job-details"><i class="icon-graph"></i><span>Job Details</span></a>
                     </li>
                     <li @if($PATH[0]=='future-jobs') class="active" @endif>
                         <a href="/future-jobs"><i class="icon-user-tie"></i><span>Future of Jobs</span></a>
-                    </li>
-                    <hr>
-                    <li @if($PATH[0]=='job') class="active" @endif>
-                        <a href="/job"><i class="icon-graph"></i><span>Jobs</span></a>
-                    </li>
-                    <li @if($PATH[0]=='skill') class="active" @endif>
-                        <a href="/skill"><i class="icon-stars"></i><span>Skills</span></a>
-                    </li>
-                    <li @if($PATH[0]=='industry') class="active" @endif>
-                        <a href="/industry"><i class="icon-info22"></i><span>Industry</span></a>
-                    </li>
-                    <li @if($PATH[0]=='needs') class="active" @endif>
-                        <a href="/needs"><i class="icon-bookmark"></i><span>Needs</span></a>
                     </li>
                 </ul>
             </div>
