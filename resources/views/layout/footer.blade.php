@@ -1,5 +1,5 @@
 <!-- Footer -->
 <div class="footer text-muted">
-    &copy; 2021. <a href="https://passgo.id" target="_blank">Pass GO Hotel</a> by <a href="https://passgo.id" target="_blank">PT Generasi Epik Nusantara</a>
+    &copy; 2021. <a href="https://joblytics.my.id" target="_blank">Joblytics</a> by <a href="https://joblytics.my.id" target="_blank">Joblytics Team</a>
 </div>
 <!-- /footer -->

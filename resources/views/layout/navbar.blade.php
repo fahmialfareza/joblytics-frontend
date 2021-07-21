@@ -1,5 +1,5 @@
 <!-- Main navbar -->
-<div class="navbar navbar-inverse">
+<div class="navbar navbar-inverse bg-primary-700">
     <div class="navbar-header">
         <a class="navbar-brand" href="/dashboard">
             {{-- <img src="assets/images/passgo_logo_white.png" alt="Logo Passgo"> --}}

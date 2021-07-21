@@ -2,9 +2,8 @@
     $PATH = explode('/', Request::path());
 @endphp
 
-<div class="sidebar sidebar-main">
+<div class="sidebar sidebar-main bg-primary">
     <div class="sidebar-content">
-
         <!-- User menu -->
         <div class="sidebar-user">
             <div class="category-content">
@@ -46,9 +45,9 @@
                     <li @if($PATH[0]=='comparison') class="active" @endif>
                         <a href="/comparison"><i class="icon-stats-bars3"></i><span>Comparison</span></a>
                     </li>
-                    <li @if($PATH[0]=='job-details') class="active" @endif>
+                    {{-- <li @if($PATH[0]=='job-details') class="active" @endif>
                         <a href="/job-details"><i class="icon-graph"></i><span>Job Details</span></a>
-                    </li>
+                    </li> --}}
                     <li @if($PATH[0]=='future-jobs') class="active" @endif>
                         <a href="/future-jobs"><i class="icon-user-tie"></i><span>Future of Jobs</span></a>
                     </li>

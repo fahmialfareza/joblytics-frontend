@@ -29,21 +29,12 @@
         <div class="panel panel-flat">
              <div class="panel-heading">
                 <div class="row">
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon">From : </span>
-                                <select class="select2" id="input-year-in" onselect="yearInSelect()">
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">To : </span>
-                                <select class="select2" id="input-year-out" onselect="yearOutSelect()">
-                                </select>
+                                <span class="input-group-addon">Job : </span>
+                                <select class="select2" id="input-job" oninput="jobSelect()"></select>
                             </div>
                         </div>
                     </div>
@@ -51,44 +42,33 @@
              </div>
         </div>
         <div class="col-lg-12">
-            @include('trends.job_trends')
+            {{-- @include('trends.job_trends')
             @include('trends.skill_trends')
             @include('trends.industry_trends')
-            @include('trends.bootcamp_trends')
+            @include('trends.bootcamp_trends') --}}
         </div>
     </div>
 @endsection
 @section('script')
     <script>
-        let $yearIn, $yearOut
+        let $jobsSelected
         
-        $.getJSON('./json/years.json', function (data) { 
-            $years = data 
-            let yearHtml = ``
-            data.forEach(y => {
-                yearHtml += `<option value="${y.no}">${y.years}</option>`
-            });
-            $('#input-year-in').html(yearHtml)
-            $('#input-year-out').html(yearHtml)
+        $.getJSON('./json/jobs.json', function (data) { 
+            $jobs = data 
+            let randomIndexs = []
+            let jobHtml = ``
 
-            // select last option in year out
-            let lastValue = $('#input-year-out option:last').val()
-            $('#input-year-out').val(lastValue)
-            
-            $yearIn = $('#input-year-in').val()
-            $yearOut = $('#input-year-out').val()
+            data.forEach(j => {
+                jobHtml += `<option value="${j.no}">${j.jobs}</option>`
+            });
+
+            $('#input-job').html(jobHtml)
+            $('#input-job').val(Math.floor(Math.random() * data.length))
+            $jobsSelected = $('#input-job').val()
         })
 
         setTimeout(() => {
             searchJobDetail()
         }, 100);
-
-        function yearInSelect() {
-            $yearIn = $('#input-year-in').val()
-        }
-
-        function yearOutSelect() {
-            $yearOut = $('#input-year-out').val()
-        }
     </script>
 @endsection

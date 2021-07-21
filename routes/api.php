@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TopicAPIController;
 use App\Http\Controllers\Api\TrendsAPIController;
 use App\Http\Controllers\Api\ComparisonAPIController;
+use App\Http\Controllers\Api\FutureJobAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,8 @@ Route::prefix('trend')->group(function (){
 Route::prefix('comparison')->group(function (){
     Route::get('/graduate', [ComparisonAPIController::class, 'graduate'])->name('comparison.graduate');
     Route::get('/bootcamp', [ComparisonAPIController::class, 'bootcamp'])->name('comparison.bootcamp');
+});
+
+Route::prefix('future-job')->group(function (){
+    Route::get('/list', [FutureJobAPIController::class, 'list'])->name('future-job.list');
 });
