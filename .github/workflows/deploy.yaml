@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: echo "API_URL"=$API_URL >> .env
+        env:
+          API_URL: ${{ secrets.API_URL }}
       - run: docker build -t $DOCKER_USERNAME/joblytics-frontend .
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
