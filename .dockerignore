@@ -5,7 +5,6 @@
 /storage/*.key
 /vendor
 /resources/cms-design
-.env
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml

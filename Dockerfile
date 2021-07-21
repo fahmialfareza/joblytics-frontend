@@ -13,7 +13,5 @@ COPY . .
 
 RUN composer install
 RUN composer dump-autoload
-RUN echo "APP_KEY=" > .env
-RUN php artisan key:generate
 
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
