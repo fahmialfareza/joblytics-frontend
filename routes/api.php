@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\TopicAPIController;
 use App\Http\Controllers\Api\TrendsAPIController;
 use App\Http\Controllers\Api\ComparisonAPIController;
 use App\Http\Controllers\Api\FutureJobAPIController;
+use App\Http\Controllers\Api\JobDetailAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,14 @@ Route::prefix('trend')->group(function (){
 Route::prefix('comparison')->group(function (){
     Route::get('/graduate', [ComparisonAPIController::class, 'graduate'])->name('comparison.graduate');
     Route::get('/bootcamp', [ComparisonAPIController::class, 'bootcamp'])->name('comparison.bootcamp');
+});
+
+Route::prefix('job-detail')->group(function (){
+    Route::get('/city', [JobDetailAPIController::class, 'city'])->name('job-detail.city');
+    Route::get('/job-posting', [JobDetailAPIController::class, 'jobPosting'])->name('job-detail.job-posting');
+    Route::get('/experience', [JobDetailAPIController::class, 'experience'])->name('job-detail.experience');
+    Route::get('/role', [JobDetailAPIController::class, 'role'])->name('job-detail.role');
+    Route::get('/top-skill', [JobDetailAPIController::class, 'topSkill'])->name('job-detail.top-skill');
 });
 
 Route::prefix('future-job')->group(function (){

@@ -34,41 +34,25 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Job : </span>
-                                <select class="select2" id="input-job" oninput="jobSelect()"></select>
+                                <select class="select2 input-lg" id="input-job" oninput="jobSelect()">
+                                    <option value="1">Data Scientist</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
              </div>
         </div>
-        <div class="col-lg-12">
-            {{-- @include('trends.job_trends')
-            @include('trends.skill_trends')
-            @include('trends.industry_trends')
-            @include('trends.bootcamp_trends') --}}
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @include('job_detail.city')
+        </div>
+        <div class="col-md-6">
+            @include('job_detail.job_posting')
+        </div>
+        <div class="col-md-6">
+            @include('job_detail.role')
         </div>
     </div>
-@endsection
-@section('script')
-    <script>
-        let $jobsSelected
-        
-        $.getJSON('./json/jobs.json', function (data) { 
-            $jobs = data 
-            let randomIndexs = []
-            let jobHtml = ``
-
-            data.forEach(j => {
-                jobHtml += `<option value="${j.no}">${j.jobs}</option>`
-            });
-
-            $('#input-job').html(jobHtml)
-            $('#input-job').val(Math.floor(Math.random() * data.length))
-            $jobsSelected = $('#input-job').val()
-        })
-
-        setTimeout(() => {
-            searchJobDetail()
-        }, 100);
-    </script>
 @endsection

@@ -10,7 +10,7 @@
                 <div class="media">
                     <div class="media-left">
                         <div id="profileImage" class="img-sm">
-                            <img class="img-circle" src="./pp.jpeg" alt="">
+                            <img class="img-circle" src="assets/images/placeholder.jpg" alt="">
                         </div>
                     </div>
                     <div class="media-body">
@@ -45,9 +45,9 @@
                     <li @if($PATH[0]=='comparison') class="active" @endif>
                         <a href="/comparison"><i class="icon-stats-bars3"></i><span>Comparison</span></a>
                     </li>
-                    {{-- <li @if($PATH[0]=='job-details') class="active" @endif>
+                    <li @if($PATH[0]=='job-details') class="active" @endif>
                         <a href="/job-details"><i class="icon-graph"></i><span>Job Details</span></a>
-                    </li> --}}
+                    </li>
                     <li @if($PATH[0]=='future-jobs') class="active" @endif>
                         <a href="/future-jobs"><i class="icon-user-tie"></i><span>Future of Jobs</span></a>
                     </li>

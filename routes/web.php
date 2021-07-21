@@ -6,6 +6,7 @@ use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\TrendsController;
 use App\Http\Controllers\ComparisonController;
 use App\Http\Controllers\FutureJobController;
+use App\Http\Controllers\JobDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ Route::prefix('comparison')->group(function (){
     Route::get('/', [ComparisonController::class, 'index'])->name('trend');
 });
 
-Route::prefix('job-detail')->group(function (){
+Route::prefix('job-details')->group(function (){
     Route::get('/', [JobDetailController::class, 'index'])->name('job-detail');
 });
 
@@ -41,7 +42,7 @@ Route::prefix('comparison')->group(function (){
     Route::get('/', [ComparisonController::class, 'index'])->name('comparison');
 });
 
-Route::prefix('future-job')->group(function (){
+Route::prefix('future-jobs')->group(function (){
     Route::get('/', [FutureJobController::class, 'index'])->name('future-job');
 });
 
