@@ -17,8 +17,8 @@
     <div class="page-header-content">
         <div class="page-title">
             <h4>
-                <i class="icon-graph position-left"></i>
-                <span class="text-semibold">Overview</span>
+                <i class="icon-stats-bars3 position-left"></i>
+                <span class="text-semibold">Comparison</span>
             </h4>
         </div>
     </div>
@@ -51,10 +51,8 @@
              </div>
         </div>
         <div class="col-lg-12">
-            @include('trends.job_trends')
-            {{-- @include('trends.skill_trends') --}}
-            @include('trends.industry_trends')
             @include('comparison.industry_needs')
+            @include('comparison.bootcamp_needs')
         </div>
     </div>
 @endsection
@@ -79,10 +77,8 @@
             $yearOut = $('#input-year-out').val()
             
             setTimeout(() => {
-                searchJobTrends()
-                // searchSkillTrends()
-                searchIndustryTrends()
                 searchIndustryNeeds()
+                searchBootcampNeeds()
             }, 100);
 
         })

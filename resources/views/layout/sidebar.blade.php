@@ -19,7 +19,7 @@
                             Joblytics
                         </span>
                         <div class="text-muted">
-                            Admin
+                            Dashboard
                         </div>
                     </div>
 
@@ -37,43 +37,21 @@
 
                     <!-- Main -->
                     <li class="navigation-header"><span>Menu</span> <i class="icon-menu" title="Main pages"></i></li>
-                    <li @if($PATH[0]=='job') class="active" @endif>
-                        <a href="/job"><i class="icon-graph"></i><span>Overview</span></a>
+                    <li @if($PATH[0]=='overview') class="active" @endif>
+                        <a href="/overview"><i class="icon-graph"></i><span>Overview</span></a>
                     </li>
-                    <li @if($PATH[0]=='job') class="active" @endif>
-                        <a href="/job"><i class="icon-graph"></i><span>Trends</span></a>
+                    <li @if($PATH[0]=='trends') class="active" @endif>
+                        <a href="/trends"><i class="icon-stats-growth"></i><span>Trends</span></a>
                     </li>
-                    <li @if($PATH[0]=='job') class="active" @endif>
-                        <a href="/job"><i class="icon-graph"></i><span>Comparison</span></a>
+                    <li @if($PATH[0]=='comparison') class="active" @endif>
+                        <a href="/comparison"><i class="icon-stats-bars3"></i><span>Comparison</span></a>
                     </li>
-                    <li @if($PATH[0]=='job') class="active" @endif>
-                        <a href="/job"><i class="icon-graph"></i><span>Job Details</span></a>
+                    <li @if($PATH[0]=='job-details') class="active" @endif>
+                        <a href="/job-details"><i class="icon-graph"></i><span>Job Details</span></a>
                     </li>
-                    <li @if($PATH[0]=='job') class="active" @endif>
-                        <a href="/job"><i class="icon-graph"></i><span>Future of Jobs</span></a>
+                    <li @if($PATH[0]=='future-jobs') class="active" @endif>
+                        <a href="/future-jobs"><i class="icon-user-tie"></i><span>Future of Jobs</span></a>
                     </li>
-                    <hr>
-                    <li @if($PATH[0]=='job') class="active" @endif>
-                        <a href="/job"><i class="icon-graph"></i><span>Jobs</span></a>
-                    </li>
-                    <li @if($PATH[0]=='skill') class="active" @endif>
-                        <a href="/skill"><i class="icon-stars"></i><span>Skills</span></a>
-                    </li>
-                    <li @if($PATH[0]=='industry') class="active" @endif>
-                        <a href="/industry"><i class="icon-info22"></i><span>Industry</span></a>
-                    </li>
-                    <li @if($PATH[0]=='needs') class="active" @endif>
-                        <a href="/needs"><i class="icon-bookmark"></i><span>Needs</span></a>
-                    </li>
-                    {{-- <li @if($PATH[0]=='categories') class="active" @endif><a href="/#"><i class="icon-price-tags"></i> <span>Categories</span></a></li>
-                    <li @if($PATH[0]=='information') class="active" @endif><a href="/information"><i class="icon-info22"></i> <span>Information</span></a></li>
-                    <li @if($PATH[0]=='user') class="active" @endif><a href="/user"><i class="icon-users"></i> <span>User Registered</span></a></li>
-                    <li @if($PATH[0]=='booking') class="active" @endif><a href="/booking"><i class="icon-bookmark"></i> <span>Booking</span></a></li>
-                    <li @if($PATH[0]=='review') class="active" @endif><a href="/review"><i class="icon-stars"></i> <span>Review</span></a></li>
-                    <li @if($PATH[0]=='notification') class="active" @endif><a href="/notification"><i class="icon-bell3"></i> <span>Push Notification</span></a></li>
-                    <li @if($PATH[0]=='history') class="active" @endif><a href="/history"><i class="icon-history"></i> <span>History Activity</span></a></li> --}}
-                    <hr>
-                    <li onclick="logout()"><a href="/auth/logout"><i class="icon-exit3"></i><span>Logout</span></a></li>
                 </ul>
             </div>
         </div>

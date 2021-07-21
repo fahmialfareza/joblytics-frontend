@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OverviewController;
+use App\Http\Controllers\TrendsController;
+use App\Http\Controllers\ComparisonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,23 +17,19 @@ use App\Http\Controllers\OverviewController;
 |
 */
 Route::get('/', function () {
-    return redirect()->route('job');
+    return redirect()->route('overview');
 });
-
-// Route::prefix('auth')->group(function(){
-//     Route::get('/login', function () { return view('auth.login'); })->name('auth.login');
-//     Route::post('/doLogin', [AuthController::class, 'doLogin'])->name('auth.submit.login');
-
-//     Route::get('/logout', [AuthController::class, 'doLogout'])->name('auth.submit.logout');
-// });
-
-Route::get('/job', [DashboardController::class, 'index'])->name('job');
-Route::get('/skill', [DashboardController::class, 'index'])->name('skill');
-Route::get('/industry', [DashboardController::class, 'index'])->name('industry');
-Route::get('/needs', [DashboardController::class, 'index'])->name('needs');
 
 Route::prefix('overview')->group(function (){
     Route::get('/', [OverviewController::class, 'index'])->name('overview');
+});
+
+Route::prefix('trends')->group(function (){
+    Route::get('/', [TrendsController::class, 'index'])->name('trend');
+});
+
+Route::prefix('comparison')->group(function (){
+    Route::get('/', [ComparisonController::class, 'index'])->name('trend');
 });
 
 Route::get('/qq', function (){
