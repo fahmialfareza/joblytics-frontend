@@ -55,7 +55,6 @@
                 'industry_ids': [industry_id], 
             },
             success: function (res) {
-                console.log(res);
                 let industryNeeds = res.result.data
                 initChartIndustryNeeds(industryNeeds, industry_id)
             },
@@ -134,7 +133,6 @@
     }
 
     function industryNeedsSelect() {
-        console.log('Industry Selected', $('#input-industry-needs').val())
         $industryNeedsSelected = $('#input-industry-needs').val()
     }
 

@@ -43,7 +43,7 @@ class ComparisonAPIController extends Controller
             $params     = [
                 'year_start'    => $request->year_start,
                 'year_end'      => $request->year_end,
-                'job_id'        => $request->job_ids
+                'job_id'        => $request->job_id
             ];
 
             $response = Http::post($apiUrl.$endpoint, $params);

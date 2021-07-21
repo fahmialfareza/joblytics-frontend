@@ -1,7 +1,7 @@
 <div class="panel panel-flat">
     <div class="panel-heading">
         <div class="col-md-6">
-            <h6 class="panel-title text-semibold">Bootcamp by Industry Needs</h6>
+            <h6 class="panel-title text-semibold">Bootcamp Needs by Job</h6>
         </div>
     </div>
     <div class="panel-body">
@@ -28,46 +28,49 @@
     </div>
 </div>
 <script>
-    let $bootcampNeedsIndustries, $bootcampNeedsSelected
+    let $bootcampNeeds, $bootcampNeedsSelected
 
-    $.getJSON('./json/industries.json', function (data) { 
-        $bootcampNeedsIndustries = data 
-        let bootcampHtml = ``
-        data.forEach(j => {
-            bootcampHtml += `<option value="${j.no}">${j.bootcamp}</option>`
-        });
-        $('#input-bootcamp-needs').html(bootcampHtml)
-        $('#input-bootcamp-needs').val(Math.floor(Math.random() * data.length))
-        $bootcampNeedsSelected = $('#input-bootcamp-needs').val()
+    $.ajax({
+        url: 'api/topic/bootcamp',
+        method: 'get',
+        success: function (res) {
+            $bootcampNeeds = res.result.data
+            let bootcampHtml = ``
+
+            $bootcampNeeds.forEach(j => {
+                bootcampHtml += `<option value="${j.id}">${j.bootcamp}</option>`
+            });
+
+            $('#input-bootcamp-needs').html(bootcampHtml)
+            $('#input-bootcamp-needs').val(Math.floor(Math.random() * $bootcampNeeds.length))
+            $bootcampsSelected = $('#input-bootcamp-needs').val()
+        },
+        error: function(err) {
+            console.error(err);
+        }
     })
-    
+
     let bootcampNeedsChart = c3.generate({
         data: { x: 'x', columns: [ [], [] ], },
     });
-
-    function reloadChartBootcampNeeds(year_in, year_out, bootcamp_id) {
-
-        let bootcampNeeds = [];
-
-        // Re-initialize Datatable
+    
+    function reloadChartBootcampNeeds(year_in, year_out, job_id) {
         $.ajax({
-        url: './json/bootcamp_needs.json',
-        method: 'get',
-        dataType: 'json',
-        success: function (res) {
-            res.forEach(r => {
-                if (r.year_id >= year_in && r.year_id <= year_out && r.bootcamp_id == bootcamp_id) {
-                    bootcampNeeds.push(r)
-                }
-            });
-            console.log('Needs', bootcampNeeds);
-            initChartBootcampNeeds(bootcampNeeds)
-        },
-        error: function (err) {
-            console.error(err);
-            $('#showing-message').html("Error occured");
-        }
-        });
+            url: 'api/comparison/bootcamp',
+            method: 'get',
+            data: {
+                'year_start': year_in, 
+                'year_end': year_out, 
+                'job_id': [job_id], 
+            },
+            success: function (res) {
+                let bootcampNeeds = res.result.data
+                initChartBootcampNeeds(bootcampNeeds, job_id)
+            },
+            error: function(err) {
+                console.error(err);
+            }
+        })
     }
 
     function initChartBootcampNeeds(bootcamp_needs) {
@@ -81,14 +84,14 @@
         }
         
         let needs = []
-        needs[0] = ['Graduates']
+        needs[0] = ['Job Employee']
         needs[1] = ['Bootcamp Needs']
 
         bootcamp_needs.forEach(need => {
-            needs[0].push(need.supply)
-            needs[1].push(need.demand)
+            needs[0].push(need.bootcamp_count)
+            needs[1].push(need.job_count)
         });
-        let bootcampName = $bootcampNeedsIndustries[bootcamp_needs[0].bootcamp_id-1].bootcamp
+        let bootcampName = $bootcampNeeds[bootcamp_needs[0].bootcamp_id-1].bootcamp
 
         needs.push(xAxis)
 
@@ -103,6 +106,9 @@
                 x: 'x',
                 columns: needs,
                 type: 'bar'
+            },
+            color: {
+                pattern: ['#FF9800', '#4CAF50']
             },
             legend: {
                 show: true,
@@ -138,7 +144,6 @@
     }
 
     function bootcampNeedsSelect() {
-        console.log('Bootcamp Selected', $('#input-bootcamp-needs').val())
         $bootcampNeedsSelected = $('#input-bootcamp-needs').val()
     }
 

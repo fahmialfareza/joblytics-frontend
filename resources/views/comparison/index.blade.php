@@ -52,6 +52,7 @@
         </div>
         <div class="col-lg-12">
             @include('comparison.industry_needs')
+            @include('comparison.bootcamp_needs')
         </div>
     </div>
 @endsection
@@ -77,6 +78,7 @@
             
             setTimeout(() => {
                 searchIndustryNeeds()
+                searchBootcampNeeds()
             }, 100);
 
         })

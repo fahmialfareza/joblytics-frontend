@@ -17,15 +17,8 @@ use App\Http\Controllers\ComparisonController;
 |
 */
 Route::get('/', function () {
-    return redirect()->route('job');
+    return redirect()->route('overview');
 });
-
-// Route::prefix('auth')->group(function(){
-//     Route::get('/login', function () { return view('auth.login'); })->name('auth.login');
-//     Route::post('/doLogin', [AuthController::class, 'doLogin'])->name('auth.submit.login');
-
-//     Route::get('/logout', [AuthController::class, 'doLogout'])->name('auth.submit.logout');
-// });
 
 Route::prefix('overview')->group(function (){
     Route::get('/', [OverviewController::class, 'index'])->name('overview');
